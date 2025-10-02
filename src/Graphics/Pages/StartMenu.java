@@ -25,12 +25,13 @@ public class StartMenu implements Page {
     @Override
     public void addComponents() {
         exitButton = new JButton("Exit");
-        int buttonWidth = frame.getWidth() / 4;
-        int buttonHeight = frame.getHeight() / 10;
+        int buttonWidth = frame.getContentPane().getWidth() / 4;
+        int buttonHeight = frame.getContentPane().getHeight() / 10;
         Assets.frameAddButton(frame, exitButton, buttonWidth, buttonHeight);
         backgroundImage = new ImageIcon("src/Components/Images/hahaha.jpg");
         backgroundImageLabel = new JLabel();
-        Assets.frameAddImageLabel(frame, backgroundImageLabel, backgroundImage, frame.getWidth(), frame.getHeight());
+        Assets.frameAddImageLabel(frame, backgroundImageLabel, backgroundImage,
+                frame.getWidth(), frame.getHeight());
     }
 
     @Override
@@ -66,9 +67,11 @@ public class StartMenu implements Page {
     @Override
     public void renderPage() {
         try {
+            exitButton.setSize(frame.getContentPane().getWidth() / 4,
+                    frame.getContentPane().getHeight() / 10);
             Assets.frameCenterButton(frame, exitButton, 0, frame.getHeight() / 4);
-            exitButton.setSize(frame.getWidth() / 4, frame.getHeight() / 10);
-            Assets.frameSetImage(backgroundImageLabel, backgroundImage, frame.getWidth(), frame.getHeight());
+            Assets.frameSetImage(backgroundImageLabel, backgroundImage, frame.getWidth(),
+                    frame.getHeight());
         } catch (NullPointerException ex) {
             System.out.println("Null pointer exception, make sure you've called addComponents() first for the page");
         }
